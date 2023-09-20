@@ -1,0 +1,21 @@
+[databaseConfig]
+host = "localhost"
+port = 3306
+user = "root"
+password = ""
+database = "TransactionCountDB"
+
+[serverConfig]
+port = 8080
+certFile = "./cert/serverpubliccert.crt"
+keyFile = "./cert/serverpvtkey.key"
+
+[[ballerina.auth.users]]
+username="admin"
+password="admin"
+scopes=["read","write"]
+
+[[ballerina.auth.users]]
+username="user"
+password="user"
+scopes=["read"]
