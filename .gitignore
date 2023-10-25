@@ -31,3 +31,10 @@ cert/
 # Ballerina related
 target/
 Dependencies.toml
+
+# Mac related
+.DS_Store
+
+# IDE related
+.idea/
+.vscode/
