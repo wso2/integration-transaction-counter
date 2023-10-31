@@ -69,4 +69,26 @@ public class TransactionCounterConstants {
 
     // MI related constants
     public static final String MI_CONFIG_CLASS = "org.wso2.config.mapper.ConfigParser";
+    public static final String MI_CONFIG_ROOT = "integration.transaction_counter";
+    public static final String MI_SERVER_ID = MI_CONFIG_ROOT + ".server_id";
+    public static final String MI_PRODUCER_THREAD_POOL_SIZE = MI_CONFIG_ROOT +
+            ".producer_counting_thread_pool_size";
+    public static final String MI_RECORD_INTERVAL = MI_CONFIG_ROOT
+            + ".producer_scheduled_interval";
+    public static final String MI_MAX_TRANSACTION_COUNT = MI_CONFIG_ROOT +
+            ".max_transaction_count_per_record";
+    public static final String MI_MIN_TRANSACTION_COUNT = MI_CONFIG_ROOT +
+            ".min_transaction_count_per_record";
+    public static final String MI_QUEUE_SIZE = MI_CONFIG_ROOT + ".record_queue_size";
+    public static final String MI_CONSUMER_COMMIT_INTERVAL = MI_CONFIG_ROOT
+            + ".publisher_scheduled_interval";
+    public static final String MI_MAX_TRANSACTION_RECORDS_PER_COMMIT = MI_CONFIG_ROOT
+            + ".publisher_max_batch_size";
+    public static final String MI_MAX_RETRY_COUNT = MI_CONFIG_ROOT + ".publisher_max_retries";
+    public static final String MI_STORE_CLASS = MI_CONFIG_ROOT + ".store_impl";
+    public static final String MI_SERVICE = MI_CONFIG_ROOT + ".service_url";
+    public static final String MI_SERVICE_USERNAME = MI_CONFIG_ROOT
+            + ".service_username";
+    public static final String MI_SERVICE_PASSWORD = MI_CONFIG_ROOT
+            + ".service_password";
 }
