@@ -21,13 +21,20 @@
     <groupId>org.wso2.integration.transaction.counter</groupId>
     <artifactId>transaction-counter</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0</version>
+    <version>0.1.0-SNAPSHOT</version>
     <name>WSO2 Integration Transaction Counter</name>
 
     <modules>
         <module>counter</module>
         <module>service</module>
     </modules>
+
+    <scm>
+        <connection>scm:git:https://github.com/wso2/integration-transaction-counter.git</connection>
+        <developerConnection>scm:git:https://github.com/wso2/integration-transaction-counter.git</developerConnection>
+        <url>https://github.com/wso2/integration-transaction-counter.git/</url>
+        <tag>HEAD</tag>
+    </scm>
 
     <repositories>
         <repository>
@@ -51,4 +58,17 @@
             </releases>
         </repository>
     </repositories>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>wso2.snapshots</id>
+            <name>Apache Snapshot Repository</name>
+            <url>https://maven.wso2.org/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <name>WSO2 Release Distribution Repository</name>
+            <url>https://maven.wso2.org/nexus/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 </project>
