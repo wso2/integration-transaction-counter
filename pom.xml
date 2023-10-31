@@ -26,6 +26,7 @@
 
     <modules>
         <module>counter</module>
+        <module>service</module>
     </modules>
 
     <repositories>
