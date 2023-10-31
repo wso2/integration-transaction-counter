@@ -1,0 +1,7 @@
+[container.image]
+repository="wso2inc"
+name="transaction-counting-service"
+tag="v1.0.0"
+
+[settings]
+buildImage=false
