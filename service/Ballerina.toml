@@ -6,4 +6,4 @@ distribution = "2201.7.0"
 
 [build-options]
 observabilityIncluded = true
-cloud = "k8s"
+cloud = "docker"

@@ -1,0 +1,49 @@
+name: Release Transaction Counting Service
+on:
+  workflow_dispatch:
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache Ballerina.
+        uses: actions/cache@v3
+        id: cache
+        with:
+          path: "ballerina-dist/*.deb"
+          key: "ballerina-2201.8.0"
+      - name: Download Ballerina distribution.
+        shell: sh
+        run: |
+          mkdir -p ballerina-dist
+          wget 'https://dist.ballerina.io/downloads/2201.8.0/ballerina-2201.8.0-swan-lake-linux-x64.deb' -P ballerina-dist
+        if: steps.cache.outputs.cache-hit != 'true'
+      - name: Install Ballerina distribution.
+        shell: sh
+        run: "sudo dpkg -i ballerina-dist/ballerina-2201.8.0-swan-lake-linux-x64.deb"
+      - name: Verify Ballerina Version
+        shell: sh
+        run: "bal -v"
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Build ballerina service
+        working-directory: ./service
+        run: bal build
+      - name: Read the version from Ballerina.toml
+        uses: SebRollen/toml-action@v1.0.2
+        id: read_toml
+        with:
+          file: 'service/Ballerina.toml'
+          field: 'package.version'
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Push docker Image to Docker Hub
+        run: |
+          docker push ${{ secrets.DOCKER_USERNAME }}/transaction-counting-service:latest
+          docker tag ${{ secrets.DOCKER_USERNAME }}/transaction-counting-service:latest ${{ secrets.DOCKER_USERNAME }}/transaction-counting-service:${{ steps.read_toml.outputs.value }}
+          docker push ${{ secrets.DOCKER_USERNAME }}/transaction-counting-service:${{ steps.read_toml.outputs.value }}
+      
