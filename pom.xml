@@ -21,7 +21,7 @@
     <groupId>org.wso2.integration.transaction.counter</groupId>
     <artifactId>transaction-counter</artifactId>
     <packaging>pom</packaging>
-    <version>0.1.0</version>
+    <version>1.0.0</version>
     <name>WSO2 Integration Transaction Counter</name>
 
     <modules>
