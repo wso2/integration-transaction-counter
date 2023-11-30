@@ -21,7 +21,7 @@
     <parent>
         <groupId>org.wso2.integration.transaction.counter</groupId>
         <artifactId>transaction-counter</artifactId>
-        <version>0.1.0-SNAPSHOT</version>
+        <version>0.1.0</version>
     </parent>
 
     <artifactId>transaction-count-service</artifactId>
