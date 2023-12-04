@@ -1,4 +1,4 @@
 [container.image]
-repository="wso2inc"
+repository="wso2"
 name="transaction-counting-service"
 tag="latest"
