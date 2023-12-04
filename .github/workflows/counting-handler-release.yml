@@ -19,5 +19,6 @@ jobs:
         uses: samuelmeuli/action-maven-publish@v1
         with:
           directory: ./counter
+          server_id: wso2.releases
           nexus_username: ${{ secrets.NEXUS_USERNAME }}
           nexus_password: ${{ secrets.NEXUS_PASSWORD }}
