@@ -43,7 +43,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Push docker Image to Docker Hub
         run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/transaction-counting-service:latest
-          docker tag ${{ secrets.DOCKER_USERNAME }}/transaction-counting-service:latest ${{ secrets.DOCKER_USERNAME }}/transaction-counting-service:${{ steps.read_toml.outputs.value }}
-          docker push ${{ secrets.DOCKER_USERNAME }}/transaction-counting-service:${{ steps.read_toml.outputs.value }}
+          docker push wso2/transaction-counting-service:latest
+          docker tag wso2/transaction-counting-service:latest wso2/transaction-counting-service:${{ steps.read_toml.outputs.value }}
+          docker push wso2/transaction-counting-service:${{ steps.read_toml.outputs.value }}
       
