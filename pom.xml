@@ -66,15 +66,17 @@
     </repositories>
 
     <distributionManagement>
-        <snapshotRepository>
-            <id>wso2.snapshots</id>
-            <name>Apache Snapshot Repository</name>
-            <url>https://maven.wso2.org/nexus/content/repositories/snapshots/</url>
-        </snapshotRepository>
         <repository>
-            <id>nexus-releases</id>
-            <name>WSO2 Release Distribution Repository</name>
-            <url>https://maven.wso2.org/nexus/service/local/staging/deploy/maven2/</url>
+            <id>wso2.releases</id>
+            <name>WSO2 Releases Repository</name>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <url>https://maven.wso2.org/nexus/content/repositories/releases/</url>
+            <layout>default</layout>
         </repository>
     </distributionManagement>
 </project>
