@@ -43,55 +43,67 @@ public class MIConfigFetcher implements ConfigFetcher {
             Long tempLong;
 
             temp = (String) configs.get(TransactionCounterConstants.MI_SERVER_ID);
-            String SERVER_ID = Objects.requireNonNull( temp, "Server ID cannot be null");
+            String SERVER_ID = temp;
 
             temp = (String) configs.get(TransactionCounterConstants.MI_STORE_CLASS);
-            String TRANSACTION_COUNT_STORE_CLASS = Objects.requireNonNull(temp,
-                    "Transaction count store class cannot be null");
+            String TRANSACTION_COUNT_STORE_CLASS = temp;
 
             tempLong = (Long) configs.get(TransactionCounterConstants.MI_QUEUE_SIZE);
-            Objects.requireNonNull(tempLong, "Transaction record queue size cannot be null");
-            Integer TRANSACTION_RECORD_QUEUE_SIZE = Integer.parseInt(tempLong.toString());
+            Integer TRANSACTION_RECORD_QUEUE_SIZE = null;
+            if (tempLong != null) {
+                TRANSACTION_RECORD_QUEUE_SIZE = Integer.parseInt(tempLong.toString());
+            }
 
             tempLong = (Long) configs.get(TransactionCounterConstants.MI_PRODUCER_THREAD_POOL_SIZE);
-            Objects.requireNonNull(tempLong, "Producer thread pool size cannot be null");
-            Integer PRODUCER_THREAD_POOL_SIZE = Integer.parseInt(tempLong.toString());
+            Integer PRODUCER_THREAD_POOL_SIZE = null;
+            if (tempLong != null) {
+                PRODUCER_THREAD_POOL_SIZE = Integer.parseInt(tempLong.toString());
+            }
 
             tempLong = (Long) configs.get(TransactionCounterConstants.MI_RECORD_INTERVAL);
-            Objects.requireNonNull(tempLong, "Transaction count record interval cannot be null");
-            Integer TRANSACTION_COUNT_RECORD_INTERVAL = Integer.parseInt(tempLong.toString());
+            Integer TRANSACTION_COUNT_RECORD_INTERVAL = null;
+            if (tempLong != null) {
+                TRANSACTION_COUNT_RECORD_INTERVAL = Integer.parseInt(tempLong.toString());
+            }
 
             tempLong = (Long) configs.get(TransactionCounterConstants.MI_MAX_TRANSACTION_COUNT);
-            Objects.requireNonNull(tempLong, "Max transaction count cannot be null");
-            Double MAX_TRANSACTION_COUNT = Double.parseDouble(tempLong.toString());
+            Double MAX_TRANSACTION_COUNT = null;
+            if (tempLong != null) {
+                MAX_TRANSACTION_COUNT = Double.parseDouble(tempLong.toString());
+            }
 
             tempLong = (Long) configs.get(TransactionCounterConstants.MI_MIN_TRANSACTION_COUNT);
-            Objects.requireNonNull(tempLong, "Min transaction count cannot be null");
-            Double MIN_TRANSACTION_COUNT = Double.parseDouble(tempLong.toString());
+            Double MIN_TRANSACTION_COUNT = null;
+            if (tempLong != null) {
+                MIN_TRANSACTION_COUNT = Double.parseDouble(tempLong.toString());
+            }
 
             tempLong = (Long) configs.get(TransactionCounterConstants.MI_CONSUMER_COMMIT_INTERVAL);
-            Objects.requireNonNull(tempLong, "Consumer commit interval cannot be null");
-            Integer CONSUMER_COMMIT_INTERVAL = Integer.parseInt(tempLong.toString());
+            Integer CONSUMER_COMMIT_INTERVAL = null;
+            if (tempLong != null) {
+                CONSUMER_COMMIT_INTERVAL = Integer.parseInt(tempLong.toString());
+            }
 
             tempLong = (Long) configs.get(TransactionCounterConstants.MI_MAX_TRANSACTION_RECORDS_PER_COMMIT);
-            Objects.requireNonNull(tempLong, "Max transaction records per commit cannot be null");
-            Integer MAX_TRANSACTION_RECORDS_PER_COMMIT = Integer.parseInt(tempLong.toString());
+            Integer MAX_TRANSACTION_RECORDS_PER_COMMIT = null;
+            if (tempLong != null) {
+                MAX_TRANSACTION_RECORDS_PER_COMMIT = Integer.parseInt(tempLong.toString());
+            }
 
             tempLong = (Long) configs.get(TransactionCounterConstants.MI_MAX_RETRY_COUNT);
-            Objects.requireNonNull(tempLong, "Max retry count cannot be null");
-            Integer MAX_RETRY_COUNT = Integer.parseInt(tempLong.toString());
+            Integer MAX_RETRY_COUNT = null;
+            if (tempLong != null) {
+                MAX_RETRY_COUNT = Integer.parseInt(tempLong.toString());
+            }
 
             temp = (String) configs.get(TransactionCounterConstants.MI_SERVICE);
-            String TRANSACTION_COUNT_SERVICE = Objects.requireNonNull(temp,
-                    "Transaction count service cannot be null");
+            String TRANSACTION_COUNT_SERVICE = temp;
 
             temp = (String) configs.get(TransactionCounterConstants.MI_SERVICE_USERNAME);
-            String TRANSACTION_COUNT_SERVICE_USERNAME = Objects.requireNonNull(temp,
-                    "Transaction count service username cannot be null");
+            String TRANSACTION_COUNT_SERVICE_USERNAME = temp;
 
             temp = (String) configs.get(TransactionCounterConstants.MI_SERVICE_PASSWORD);
-            String TRANSACTION_COUNT_SERVICE_PASSWORD = Objects.requireNonNull(temp,
-                    "Transaction count service password cannot be null");
+            String TRANSACTION_COUNT_SERVICE_PASSWORD = temp;
 
             configMap.put(TransactionCounterConstants.SERVER_ID, SERVER_ID);
             configMap.put(TransactionCounterConstants.TRANSACTION_COUNT_STORE_CLASS, TRANSACTION_COUNT_STORE_CLASS);
@@ -125,6 +137,9 @@ public class MIConfigFetcher implements ConfigFetcher {
 
     @Override
     public String getConfigValue(String key) {
+        if (configMap.get(key) == null) {
+            return null;
+        }
         return configMap.get(key).toString();
     }
 }

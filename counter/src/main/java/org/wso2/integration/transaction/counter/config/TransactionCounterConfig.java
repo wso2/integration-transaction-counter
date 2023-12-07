@@ -18,6 +18,7 @@
 
 package org.wso2.integration.transaction.counter.config;
 
+import java.util.UUID;
 import org.wso2.integration.transaction.counter.TransactionCounterConstants;
 import org.wso2.integration.transaction.counter.exception.TransactionCounterConfigurationException;
 
@@ -49,61 +50,100 @@ public class TransactionCounterConfig {
     }
 
     public static String getServerID() {
+        if ( configFetcher.getConfigValue(TransactionCounterConstants.SERVER_ID) == null ) {
+            return serverType.toString() + "_" + UUID.randomUUID().toString();
+        }
         return configFetcher.getConfigValue(TransactionCounterConstants.SERVER_ID);
     }
 
     public static String getTransactionCountStoreClass() {
+        if ( configFetcher.getConfigValue(TransactionCounterConstants.TRANSACTION_COUNT_STORE_CLASS) == null ) {
+            return TransactionCounterConstants.DEFAULT_TRANSACTION_COUNT_STORE_CLASS;
+        }
         return configFetcher.getConfigValue(TransactionCounterConstants.TRANSACTION_COUNT_STORE_CLASS);
     }
 
     public static int getProducerThreadPoolSize() {
+        if ( configFetcher.getConfigValue(TransactionCounterConstants.PRODUCER_THREAD_POOL_SIZE) == null ) {
+            return TransactionCounterConstants.DEFAULT_PRODUCER_THREAD_POOL_SIZE;
+        }
         return Integer.parseInt(
                 configFetcher.getConfigValue(TransactionCounterConstants.PRODUCER_THREAD_POOL_SIZE));
     }
 
     public static double getMaxTransactionCount() {
+        if ( configFetcher.getConfigValue(TransactionCounterConstants.MAX_TRANSACTION_COUNT) == null ) {
+            return TransactionCounterConstants.DEFAULT_MAX_TRANSACTION_COUNT;
+        }
         return Double.parseDouble(
                 configFetcher.getConfigValue(TransactionCounterConstants.MAX_TRANSACTION_COUNT));
     }
 
     public static double getMinTransactionCount() {
+        if ( configFetcher.getConfigValue(TransactionCounterConstants.MIN_TRANSACTION_COUNT) == null ) {
+            return TransactionCounterConstants.DEFAULT_MIN_TRANSACTION_COUNT;
+        }
         return Double.parseDouble(
                 configFetcher.getConfigValue(TransactionCounterConstants.MIN_TRANSACTION_COUNT));
     }
 
     public static int getTransactionCountRecordInterval() {
+        if ( configFetcher.getConfigValue(TransactionCounterConstants.TRANSACTION_COUNT_RECORD_INTERVAL) == null ) {
+            return TransactionCounterConstants.DEFAULT_TRANSACTION_COUNT_RECORD_INTERVAL;
+        }
         return Integer.parseInt(
                 configFetcher.getConfigValue(TransactionCounterConstants.TRANSACTION_COUNT_RECORD_INTERVAL));
     }
 
     public static int getMaxRetryCount() {
+        if ( configFetcher.getConfigValue(TransactionCounterConstants.MAX_RETRY_COUNT) == null ) {
+            return TransactionCounterConstants.DEFAULT_MAX_RETRY_COUNT;
+        }
         return Integer.parseInt(
                 configFetcher.getConfigValue(TransactionCounterConstants.MAX_RETRY_COUNT));
     }
 
     public static int getMaxTransactionRecordsPerCommit() {
+        if ( configFetcher.getConfigValue(TransactionCounterConstants.MAX_TRANSACTION_RECORDS_PER_COMMIT) == null ) {
+            return TransactionCounterConstants.DEFAULT_MAX_TRANSACTION_RECORDS_PER_COMMIT;
+        }
         return Integer.parseInt(
                 configFetcher.getConfigValue(TransactionCounterConstants.MAX_TRANSACTION_RECORDS_PER_COMMIT));
     }
 
     public static int getTransactionRecordQueueSize() {
+        if ( configFetcher.getConfigValue(TransactionCounterConstants.TRANSACTION_RECORD_QUEUE_SIZE) == null ) {
+            return TransactionCounterConstants.DEFAULT_TRANSACTION_RECORD_QUEUE_SIZE;
+        }
         return Integer.parseInt(
                 configFetcher.getConfigValue(TransactionCounterConstants.TRANSACTION_RECORD_QUEUE_SIZE));
     }
 
     public static String getTransactionCountService() {
+        if ( configFetcher.getConfigValue(TransactionCounterConstants.TRANSACTION_COUNT_SERVICE) == null ) {
+            return TransactionCounterConstants.DEFAULT_TRANSACTION_COUNT_SERVICE;
+        }
         return configFetcher.getConfigValue(TransactionCounterConstants.TRANSACTION_COUNT_SERVICE);
     }
 
     public static String getTransactionCountServiceUsername() {
+        if ( configFetcher.getConfigValue(TransactionCounterConstants.TRANSACTION_COUNT_SERVICE_USERNAME) == null ) {
+            return TransactionCounterConstants.DEFAULT_TRANSACTION_COUNT_SERVICE_USERNAME;
+        }
         return configFetcher.getConfigValue(TransactionCounterConstants.TRANSACTION_COUNT_SERVICE_USERNAME);
     }
 
     public static String getTransactionCountServicePassword() {
+        if ( configFetcher.getConfigValue(TransactionCounterConstants.TRANSACTION_COUNT_SERVICE_PASSWORD) == null ) {
+            return TransactionCounterConstants.DEFAULT_TRANSACTION_COUNT_SERVICE_PASSWORD;
+        }
         return configFetcher.getConfigValue(TransactionCounterConstants.TRANSACTION_COUNT_SERVICE_PASSWORD);
     }
 
     public static int getConsumerCommitInterval() {
+        if ( configFetcher.getConfigValue(TransactionCounterConstants.CONSUMER_COMMIT_INTERVAL) == null ) {
+            return TransactionCounterConstants.DEFAULT_CONSUMER_COMMIT_INTERVAL;
+        }
         return Integer.parseInt(
                 configFetcher.getConfigValue(TransactionCounterConstants.CONSUMER_COMMIT_INTERVAL));
     }
