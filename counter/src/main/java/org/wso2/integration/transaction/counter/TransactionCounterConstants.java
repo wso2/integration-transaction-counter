@@ -91,4 +91,20 @@ public class TransactionCounterConstants {
             + ".service_username";
     public static final String MI_SERVICE_PASSWORD = MI_CONFIG_ROOT
             + ".service_password";
+
+    // Default values
+    public static final String DEFAULT_SERVER_ID = "default";
+    public static final String DEFAULT_TRANSACTION_COUNT_STORE_CLASS =
+                "org.wso2.integration.transaction.counter.store.TransactionRecordStoreImpl";
+    public static final int DEFAULT_TRANSACTION_RECORD_QUEUE_SIZE = 1000;
+    public static final int DEFAULT_PRODUCER_THREAD_POOL_SIZE = 10;
+    public static final int DEFAULT_TRANSACTION_COUNT_RECORD_INTERVAL = 10;
+    public static final double DEFAULT_MAX_TRANSACTION_COUNT = 20;
+    public static final double DEFAULT_MIN_TRANSACTION_COUNT = 5;
+    public static final int DEFAULT_CONSUMER_COMMIT_INTERVAL = 10;
+    public static final int DEFAULT_MAX_TRANSACTION_RECORDS_PER_COMMIT = 100;
+    public static final int DEFAULT_MAX_RETRY_COUNT = 3;
+    public static final String DEFAULT_TRANSACTION_COUNT_SERVICE = "https://localhost:8080/transactions/records";
+    public static final String DEFAULT_TRANSACTION_COUNT_SERVICE_USERNAME = "admin";
+    public static final String DEFAULT_TRANSACTION_COUNT_SERVICE_PASSWORD = "admin";
 }

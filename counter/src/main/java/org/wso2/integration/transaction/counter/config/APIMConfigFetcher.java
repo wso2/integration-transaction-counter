@@ -24,7 +24,6 @@ import org.wso2.integration.transaction.counter.exception.TransactionCounterConf
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
-import java.util.Objects;
 
 public class APIMConfigFetcher implements ConfigFetcher {
 
@@ -48,67 +47,79 @@ public class APIMConfigFetcher implements ConfigFetcher {
 
             temp = (String) getFirstProperty.invoke(apiManagerConfiguration,
                     TransactionCounterConstants.GATEWAY_SERVER_ID);
-            String SERVER_ID = Objects.requireNonNull( temp, "Server ID cannot be null");
+            String SERVER_ID = temp;
 
             temp = (String) getFirstProperty.invoke(apiManagerConfiguration,
                     TransactionCounterConstants.GATEWAY_STORE_CLASS);
-            String TRANSACTION_COUNT_STORE_CLASS = Objects.requireNonNull(
-                    temp, "Transaction count store class cannot be null");
+            String TRANSACTION_COUNT_STORE_CLASS = temp;
 
             temp = (String) getFirstProperty.invoke(apiManagerConfiguration,
                     TransactionCounterConstants.GATEWAY_QUEUE_SIZE);
-            temp = Objects.requireNonNull(temp, "Transaction record queue size cannot be null");
-            Integer TRANSACTION_RECORD_QUEUE_SIZE = Integer.parseInt(temp);
+            Integer TRANSACTION_RECORD_QUEUE_SIZE = null;
+            if (temp != null) {
+                TRANSACTION_RECORD_QUEUE_SIZE = Integer.parseInt(temp);
+            }
 
             temp = (String) getFirstProperty.invoke(apiManagerConfiguration,
                     TransactionCounterConstants.GATEWAY_PRODUCER_THREAD_POOL_SIZE);
-            temp = Objects.requireNonNull(temp, "Producer thread pool size cannot be null");
-            Integer PRODUCER_THREAD_POOL_SIZE = Integer.parseInt(temp);
+            Integer PRODUCER_THREAD_POOL_SIZE = null;
+            if (temp != null) {
+                PRODUCER_THREAD_POOL_SIZE = Integer.parseInt(temp);
+            }
 
             temp = (String) getFirstProperty.invoke(apiManagerConfiguration,
                     TransactionCounterConstants.GATEWAY_RECORD_INTERVAL);
-            temp = Objects.requireNonNull(temp, "Transaction count record interval cannot be null");
-            Integer TRANSACTION_COUNT_RECORD_INTERVAL = Integer.parseInt(temp);
+            Integer TRANSACTION_COUNT_RECORD_INTERVAL = null;
+            if (temp != null) {
+                TRANSACTION_COUNT_RECORD_INTERVAL = Integer.parseInt(temp);
+            }
 
             temp = (String) getFirstProperty.invoke(apiManagerConfiguration,
                     TransactionCounterConstants.GATEWAY_MAX_TRANSACTION_COUNT);
-            temp = Objects.requireNonNull(temp, "Max transaction count cannot be null");
-            Double MAX_TRANSACTION_COUNT = Double.parseDouble(temp);
+            Double MAX_TRANSACTION_COUNT = null;
+            if (temp != null) {
+                MAX_TRANSACTION_COUNT = Double.parseDouble(temp);
+            }
 
             temp = (String) getFirstProperty.invoke(apiManagerConfiguration,
                     TransactionCounterConstants.GATEWAY_MIN_TRANSACTION_COUNT);
-            temp = Objects.requireNonNull(temp, "Min transaction count cannot be null");
-            Double MIN_TRANSACTION_COUNT = Double.parseDouble(temp);
+            Double MIN_TRANSACTION_COUNT = null;
+            if (temp != null) {
+                MIN_TRANSACTION_COUNT = Double.parseDouble(temp);
+            }
 
             temp = (String) getFirstProperty.invoke(apiManagerConfiguration,
                     TransactionCounterConstants.GATEWAY_CONSUMER_COMMIT_INTERVAL);
-            temp = Objects.requireNonNull(temp, "Consumer commit interval cannot be null");
-            Integer CONSUMER_COMMIT_INTERVAL = Integer.parseInt(temp);
+            Integer CONSUMER_COMMIT_INTERVAL = null;
+            if (temp != null) {
+                CONSUMER_COMMIT_INTERVAL = Integer.parseInt(temp);
+            }
 
             temp = (String) getFirstProperty.invoke(apiManagerConfiguration,
                     TransactionCounterConstants.GATEWAY_MAX_TRANSACTION_RECORDS_PER_COMMIT);
-            temp = Objects.requireNonNull(temp, "Max transaction records per commit cannot be null");
-            Integer MAX_TRANSACTION_RECORDS_PER_COMMIT = Integer.parseInt(temp);
+            Integer MAX_TRANSACTION_RECORDS_PER_COMMIT = null;
+            if (temp != null) {
+                MAX_TRANSACTION_RECORDS_PER_COMMIT = Integer.parseInt(temp);
+            }
 
             temp = (String) getFirstProperty.invoke(apiManagerConfiguration,
                     TransactionCounterConstants.GATEWAY_MAX_RETRY_COUNT);
-            temp = Objects.requireNonNull(temp, "Max retry count cannot be null");
-            Integer MAX_RETRY_COUNT = Integer.parseInt(temp);
+            Integer MAX_RETRY_COUNT = null;
+            if (temp != null) {
+                MAX_RETRY_COUNT = Integer.parseInt(temp);
+            }
 
             temp = (String) getFirstProperty.invoke(apiManagerConfiguration,
                     TransactionCounterConstants.GATEWAY_SERVICE);
-            String TRANSACTION_COUNT_SERVICE = Objects.requireNonNull(temp,
-                    "Transaction count service cannot be null");
+            String TRANSACTION_COUNT_SERVICE = temp;
 
             temp = (String) getFirstProperty.invoke(apiManagerConfiguration,
                     TransactionCounterConstants.GATEWAY_SERVICE_USERNAME);
-            String TRANSACTION_COUNT_SERVICE_USERNAME = Objects.requireNonNull(temp,
-                    "Transaction count service username cannot be null");
+            String TRANSACTION_COUNT_SERVICE_USERNAME = temp;
 
             temp = (String) getFirstProperty.invoke(apiManagerConfiguration,
                     TransactionCounterConstants.GATEWAY_SERVICE_PASSWORD);
-            String TRANSACTION_COUNT_SERVICE_PASSWORD = Objects.requireNonNull(temp,
-                    "Transaction count service password cannot be null");
+            String TRANSACTION_COUNT_SERVICE_PASSWORD = temp;
 
             configMap.put(TransactionCounterConstants.SERVER_ID, SERVER_ID);
             configMap.put(TransactionCounterConstants.TRANSACTION_COUNT_STORE_CLASS, TRANSACTION_COUNT_STORE_CLASS);
@@ -142,6 +153,9 @@ public class APIMConfigFetcher implements ConfigFetcher {
 
     @Override
     public String getConfigValue(String key) {
+        if (configMap.get(key) == null) {
+            return null;
+        }
         return configMap.get(key).toString();
     }
 
