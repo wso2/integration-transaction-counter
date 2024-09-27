@@ -1,4 +1,5 @@
-name: Release Transaction Counting Handler
+name: CI - Pull request - Ubuntu
+
 on:
   pull_request:
 
