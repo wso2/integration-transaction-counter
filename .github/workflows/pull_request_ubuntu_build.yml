@@ -1,0 +1,35 @@
+name: Release Transaction Counting Handler
+on:
+  pull_request:
+
+jobs:
+  build-handler:
+    name: Build Transaction Counting Handler
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+      - name: Build with Maven
+        working-directory: ./counter
+        run: mvn package --file pom.xml
+      - name: Upload test coverage to Codecov
+        uses: codecov/codecov-action@v4
+
+  build-service:
+    name: Build Transaction Counting Service
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Ballerina
+        uses: ballerina-platform/setup-ballerina@v1
+        with:
+          version: '2201.8.0'
+      - name: Build Ballerina service
+        working-directory: ./service
+        run: bal build
